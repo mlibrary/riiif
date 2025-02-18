@@ -63,7 +63,7 @@ module Riiif
           benchmark("Riiif downloaded #{url}") do
             ::File.atomic_write(file_name, cache_path) do |local|
               begin
-                Kernel.open(url, download_opts) do |remote|
+                Kernel.open(url, **download_opts) do |remote|
                   while chunk = remote.read(8192)
                     local.write(chunk)
                   end
